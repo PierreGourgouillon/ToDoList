@@ -1,18 +1,18 @@
-package com.example.app_todolist;
+package com.example.app_todolist.domain;
 
 public class ToDo {
     private int id;
     private String title;
     private String description;
     private String hours;
-    private boolean isCheck;
+    private boolean isComplete;
 
     public ToDo(int id, String title, String description, String hours){
         this.id = id;
         this.title = title;
         this.description = description;
         this.hours = hours;
-        this.isCheck = false;
+        this.isComplete = false;
     }
 
     public void setDescription(String description) {
@@ -45,6 +45,8 @@ public class ToDo {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", hours='" + hours + '\'' +
+                ", isComplete=" + isComplete +
                 '}';
     }
 }

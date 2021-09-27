@@ -1,4 +1,4 @@
-package com.example.app_todolist;
+package com.example.app_todolist.Screens;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class fragment_todo extends Fragment {
+import com.example.app_todolist.R;
+
+public class ToDoFragment extends Fragment {
 
     Button createButton;
     Button modifyButton;

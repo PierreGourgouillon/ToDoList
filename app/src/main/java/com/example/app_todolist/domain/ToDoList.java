@@ -1,12 +1,11 @@
 package com.example.app_todolist.domain;
 
-import com.example.app_todolist.domain.ToDo;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoList {
-    private List<ToDo> toDoList;
+
+    List<ToDo> toDoList;
 
     public ToDoList(){
         this.toDoList = new ArrayList<ToDo>();

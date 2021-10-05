@@ -35,7 +35,7 @@ public class ToDoCreate extends Fragment {
 
         initialiseComponents(view);
         returnToLastFragment();
-        createTask();
+        setButtonNewTask();
 
         return view;
     }
@@ -56,15 +56,27 @@ public class ToDoCreate extends Fragment {
         });
     }
 
-    private void createTask(){
+    private void setButtonNewTask(){
         this.createTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToDo newTask = new ToDo(titleInput.getEditText().getText().toString(), descriptionInput.getEditText().getText().toString(), "15:5");
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("key", newTask);
-                Navigation.findNavController(view).navigate(R.id.action_fragment_create_to_fragment_todo2, bundle);
+                try {
+                    redirectToDoFragment(createNewToDo());
+                }catch (NullPointerException e){
+
+                }
             }
         });
     }
+
+    private ToDo createNewToDo(){
+        return new ToDo(titleInput.getEditText().getText().toString(), descriptionInput.getEditText().getText().toString(), "15:5");
+    }
+
+    private void redirectToDoFragment(ToDo newTask){
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("key", newTask);
+        Navigation.findNavController(view).navigate(R.id.action_fragment_create_to_fragment_todo2, bundle);
+    }
+
 }

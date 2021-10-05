@@ -11,6 +11,7 @@ public class ToDo implements Parcelable {
     private boolean isComplete;
 
     public ToDo(String title, String description, String hours){
+        verifyData(title,description, hours);
         this.title = title;
         this.description = description;
         this.hours = hours;
@@ -23,6 +24,12 @@ public class ToDo implements Parcelable {
         description = in.readString();
         hours = in.readString();
         isComplete = in.readByte() != 0;
+    }
+
+    private void verifyData(String title, String description, String hours){
+        if (title.equals("") || description.equals("") || hours.equals("")){
+            throw new NullPointerException();
+        }
     }
 
     public static final Creator<ToDo> CREATOR = new Creator<ToDo>() {

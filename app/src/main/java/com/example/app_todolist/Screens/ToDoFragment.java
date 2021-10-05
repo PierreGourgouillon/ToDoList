@@ -2,13 +2,8 @@ package com.example.app_todolist.Screens;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.LiveData;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,8 +19,6 @@ import com.example.app_todolist.domain.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 public class ToDoFragment extends Fragment {
 
@@ -46,13 +39,9 @@ public class ToDoFragment extends Fragment {
 
         initialiseComponents();
 
-        changeView(this.createButton, R.id.action_fragment_todo2_to_fragment_create);
+        navToNewFragment(this.createButton, R.id.action_fragment_todo2_to_fragment_create);
 
-        this.listToPrint = generateList();
-        this.adapter = new ToDoAdapter(listToPrint);
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
+        manageRecyclerView();
 
         if(getArguments() != null){
             addItem(new ViewModel(getArguments().getParcelable("newTask")));
@@ -66,7 +55,18 @@ public class ToDoFragment extends Fragment {
         this.createButton = view.findViewById(R.id.create_todo);
     }
 
-    public void changeView(Button button, int id){
+    private void manageRecyclerView(){
+        createRecyclerView();
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
+    }
+
+    private void createRecyclerView(){
+        this.adapter = new ToDoAdapter(listToPrint);
+    }
+
+    public void navToNewFragment(Button button, int id){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,20 +76,8 @@ public class ToDoFragment extends Fragment {
     }
 
     private void addItem(ViewModel viewModel){
-        listToPrint.add(viewModel);
+        this.listToPrint.add(viewModel);
         adapter.notifyDataSetChanged();
-    }
-
-    private List<ViewModel> generateList(){
-        List<ViewModel> simpleViewModelList = new ArrayList<>();
-
-        for (int i =0; i < 10; i++){
-            ViewModel viewModel = new ViewModel(new ToDo("Salut mec " + i, "Je suis la description", "14:50"));
-            viewModel.getToDo().setId(i);
-            simpleViewModelList.add(viewModel);
-        }
-
-        return simpleViewModelList;
     }
 
 

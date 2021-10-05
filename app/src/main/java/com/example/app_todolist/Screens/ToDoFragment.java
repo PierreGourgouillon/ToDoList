@@ -31,7 +31,7 @@ public class ToDoFragment extends Fragment {
 
     Button createButton;
     View view;
-    List<ViewModel> listToPrint = new ArrayList<ViewModel>();
+    List<ViewModel> listToPrint;
     ToDoAdapter adapter;
 
     @Override
@@ -43,7 +43,8 @@ public class ToDoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         this.view = inflater.inflate(R.layout.fragment_todo, container, false);
-        this.createButton = view.findViewById(R.id.create_todo);
+
+        initialiseComponents();
 
         changeView(this.createButton, R.id.action_fragment_todo2_to_fragment_create);
 
@@ -58,6 +59,11 @@ public class ToDoFragment extends Fragment {
         }
 
         return view;
+    }
+
+    private void initialiseComponents(){
+        this.listToPrint = new ArrayList<ViewModel>();
+        this.createButton = view.findViewById(R.id.create_todo);
     }
 
     public void changeView(Button button, int id){

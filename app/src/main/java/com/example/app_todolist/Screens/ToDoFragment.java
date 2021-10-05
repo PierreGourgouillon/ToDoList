@@ -54,7 +54,7 @@ public class ToDoFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         if(getArguments() != null){
-            addItem(new ViewModel(getArguments().getParcelable("key")));
+            addItem(new ViewModel(getArguments().getParcelable("newTask")));
         }
 
         return view;

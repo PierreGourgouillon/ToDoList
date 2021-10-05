@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.app_todolist.R;
 import com.example.app_todolist.domain.ToDo;
@@ -63,10 +64,15 @@ public class ToDoCreate extends Fragment {
                 try {
                     redirectToDoFragment(createNewToDo());
                 }catch (NullPointerException e){
-
+                    printCompleteAllInput();
                 }
             }
         });
+    }
+
+    private void printCompleteAllInput(){
+        Toast toast = Toast.makeText(getContext(),"Complete all input", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     private ToDo createNewToDo(){
@@ -75,7 +81,7 @@ public class ToDoCreate extends Fragment {
 
     private void redirectToDoFragment(ToDo newTask){
         Bundle bundle = new Bundle();
-        bundle.putParcelable("key", newTask);
+        bundle.putParcelable("newTask", newTask);
         Navigation.findNavController(view).navigate(R.id.action_fragment_create_to_fragment_todo2, bundle);
     }
 

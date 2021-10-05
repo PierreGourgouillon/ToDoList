@@ -2,7 +2,10 @@ package com.example.app_todolist.Screens;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -13,10 +16,7 @@ import android.widget.ImageView;
 
 import com.example.app_todolist.R;
 import com.example.app_todolist.domain.ToDo;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.util.Objects;
 
 public class ToDoCreate extends Fragment {
 
@@ -41,7 +41,7 @@ public class ToDoCreate extends Fragment {
         this.descriptionInput = view.findViewById(R.id.description_new_task);
 
         backFragment();
-        clickerCreate();
+        createTask();
 
         return view;
     }
@@ -55,11 +55,14 @@ public class ToDoCreate extends Fragment {
         });
     }
 
-    private void clickerCreate(){
+    private void createTask(){
         this.createTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ToDo task = new ToDo(0, titleInput.getEditText().getText().toString(), descriptionInput.getEditText().getText().toString(), "15:5");
+                ToDo newTask = new ToDo(titleInput.getEditText().getText().toString(), descriptionInput.getEditText().getText().toString(), "15:5");
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("key", newTask);
+                Navigation.findNavController(view).navigate(R.id.action_fragment_create_to_fragment_todo2, bundle);
             }
         });
     }

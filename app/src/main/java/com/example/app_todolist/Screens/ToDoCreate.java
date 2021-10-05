@@ -2,10 +2,7 @@ package com.example.app_todolist.Screens;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -35,18 +32,22 @@ public class ToDoCreate extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         this.view = inflater.inflate(R.layout.fragment_create, container, false);
-        this.backButton = view.findViewById(R.id.back_button);
-        this.createTask = view.findViewById(R.id.create_task);
-        this.titleInput = view.findViewById(R.id.title_new_task);
-        this.descriptionInput = view.findViewById(R.id.description_new_task);
 
-        backFragment();
+        initialiseComponents(view);
+        returnToLastFragment();
         createTask();
 
         return view;
     }
 
-    private void backFragment(){
+    private void initialiseComponents(View view){
+        this.backButton = view.findViewById(R.id.back_button);
+        this.createTask = view.findViewById(R.id.create_task);
+        this.titleInput = view.findViewById(R.id.title_new_task);
+        this.descriptionInput = view.findViewById(R.id.description_new_task);
+    }
+
+    private void returnToLastFragment(){
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -3,8 +3,6 @@ package com.example.app_todolist.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class ToDo implements Parcelable {
     private int id;
     private String title;

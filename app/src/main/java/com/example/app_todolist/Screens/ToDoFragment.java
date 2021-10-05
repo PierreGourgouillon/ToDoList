@@ -57,7 +57,6 @@ public class ToDoFragment extends Fragment {
             addItem(new ViewModel(getArguments().getParcelable("key")));
         }
 
-
         return view;
     }
 

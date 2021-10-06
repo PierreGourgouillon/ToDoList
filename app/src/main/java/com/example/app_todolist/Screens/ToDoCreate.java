@@ -12,8 +12,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.app_todolist.Database.Handler;
 import com.example.app_todolist.R;
-import com.example.app_todolist.domain.ToDo;
+import com.example.app_todolist.Domain.ToDo;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ToDoCreate extends Fragment {
@@ -80,9 +81,9 @@ public class ToDoCreate extends Fragment {
     }
 
     private void redirectToDoFragment(ToDo newTask){
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("newTask", newTask);
-        Navigation.findNavController(view).navigate(R.id.action_fragment_create_to_fragment_todo2, bundle);
+        Handler db = new Handler(getContext());
+        db.addNewTask(newTask);
+        Navigation.findNavController(view).popBackStack();
     }
 
 }

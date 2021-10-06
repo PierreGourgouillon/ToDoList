@@ -1,4 +1,4 @@
-package com.example.app_todolist.domain;
+package com.example.app_todolist.Domain;
 
 import android.view.LayoutInflater;
 import android.view.View;

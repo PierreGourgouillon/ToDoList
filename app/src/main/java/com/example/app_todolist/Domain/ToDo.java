@@ -1,9 +1,7 @@
-package com.example.app_todolist.domain;
+package com.example.app_todolist.Domain;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class ToDo implements Parcelable {
+public class ToDo {
     private int id;
     private String title;
     private String description;
@@ -18,31 +16,11 @@ public class ToDo implements Parcelable {
         this.isComplete = false;
     }
 
-    protected ToDo(Parcel in) {
-        id = in.readInt();
-        title = in.readString();
-        description = in.readString();
-        hours = in.readString();
-        isComplete = in.readByte() != 0;
-    }
-
     private void verifyData(String title, String description, String hours){
         if (title.equals("") || description.equals("") || hours.equals("")){
             throw new NullPointerException();
         }
     }
-
-    public static final Creator<ToDo> CREATOR = new Creator<ToDo>() {
-        @Override
-        public ToDo createFromParcel(Parcel in) {
-            return new ToDo(in);
-        }
-
-        @Override
-        public ToDo[] newArray(int size) {
-            return new ToDo[size];
-        }
-    };
 
     public void setDescription(String description) {
         this.description = description;
@@ -81,19 +59,5 @@ public class ToDo implements Parcelable {
                 ", hours='" + hours + '\'' +
                 ", isComplete=" + isComplete +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(title);
-        parcel.writeString(description);
-        parcel.writeString(hours);
-        parcel.writeByte((byte) (isComplete ? 1 : 0));
     }
 }

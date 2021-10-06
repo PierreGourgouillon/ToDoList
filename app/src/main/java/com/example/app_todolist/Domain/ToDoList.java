@@ -1,4 +1,4 @@
-package com.example.app_todolist.domain;
+package com.example.app_todolist.Domain;
 
 import java.util.ArrayList;
 import java.util.List;

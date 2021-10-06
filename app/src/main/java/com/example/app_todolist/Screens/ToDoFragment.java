@@ -12,10 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.app_todolist.Database.Handler;
+import com.example.app_todolist.Domain.ToDo;
 import com.example.app_todolist.R;
-import com.example.app_todolist.domain.ToDo;
-import com.example.app_todolist.domain.ToDoAdapter;
-import com.example.app_todolist.domain.ViewModel;
+import com.example.app_todolist.Domain.ToDoAdapter;
+import com.example.app_todolist.Domain.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ToDoFragment extends Fragment {
     View view;
     List<ViewModel> listToPrint;
     ToDoAdapter adapter;
+    Handler dbHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,16 +45,13 @@ public class ToDoFragment extends Fragment {
 
         manageRecyclerView();
 
-        if(getArguments() != null){
-            addItem(new ViewModel(getArguments().getParcelable("newTask")));
-        }
-
         return view;
     }
 
     private void initialiseComponents(){
-        this.listToPrint = new ArrayList<ViewModel>();
         this.createButton = view.findViewById(R.id.create_todo);
+        this.dbHandler = new Handler(getContext());
+        this.listToPrint = getTasksInDB();
     }
 
     private void manageRecyclerView(){
@@ -60,6 +59,14 @@ public class ToDoFragment extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+    }
+
+    private List<ViewModel> getTasksInDB(){
+        List<ViewModel> viewModelList = new ArrayList<>();
+        for(ToDo todo : dbHandler.getToDos()){
+            viewModelList.add(new ViewModel(todo));
+        }
+        return viewModelList;
     }
 
     private void createRecyclerView(){
@@ -74,11 +81,5 @@ public class ToDoFragment extends Fragment {
             }
         });
     }
-
-    private void addItem(ViewModel viewModel){
-        this.listToPrint.add(viewModel);
-        adapter.notifyDataSetChanged();
-    }
-
 
 }

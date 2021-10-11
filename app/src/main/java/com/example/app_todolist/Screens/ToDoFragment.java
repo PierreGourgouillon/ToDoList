@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.app_todolist.Database.Handler;
 import com.example.app_todolist.Domain.ToDo;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class ToDoFragment extends Fragment {
 
-    Button createButton;
+    ImageButton createButton;
     View view;
     List<ViewModel> listToPrint;
     ToDoAdapter adapter;
@@ -73,7 +74,7 @@ public class ToDoFragment extends Fragment {
         this.adapter = new ToDoAdapter(listToPrint);
     }
 
-    public void navToNewFragment(Button button, int id){
+    public void navToNewFragment(ImageButton button, int id){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

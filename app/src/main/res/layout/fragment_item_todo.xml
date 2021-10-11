@@ -1,71 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:background="@drawable/background_item">
 
-    <CheckBox
-            android:id="@+id/checkbox_task"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
+            android:id="@+id/linear_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="@drawable/background_item">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
         <ImageView
                 android:id="@+id/icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/tv_icon"
-                android:background="@drawable/background_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"/>
+                android:background="@drawable/background_icon" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
+        <TextView
+                android:id="@+id/title_task"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginLeft="10dp"
-            app:layout_constraintLeft_toRightOf="@id/icon">
+                android:text="Shrink project kick off"
+                android:textSize="18dp"
+                android:maxWidth="140dp"
+                android:fontFamily="@font/sf_pro_bold"
+                android:textColor="@color/white"
+                android:layout_toEndOf="@id/icon"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp" />
 
-            <TextView
-                    android:id="@+id/title_task"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wake up Buddy"
-                    android:textSize="18dp"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"/>
+        <TextView
+                android:id="@+id/hour_task"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="7:00 AM"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"
+                android:fontFamily="@font/sf_pro_regular"
+                android:layout_centerVertical="true"/>
 
-            <TextView
-                    android:id="@+id/hour_task"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="7:00 AM"
-                    android:textColor="@color/white"
-                    app:layout_constraintTop_toTopOf="@id/title_task"
-                    app:layout_constraintBottom_toBottomOf="@id/title_task"
-                    app:layout_constraintRight_toRightOf="parent"/>
+    </RelativeLayout>
 
-            <TextView
-                    android:id="@+id/description_task"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Lunch with Julia, fight this quarantine with humor dsdsqdqs"
-                    android:textColor="@color/white"
-                    app:layout_constraintLeft_toLeftOf="@id/title_task"
-                    app:layout_constraintTop_toBottomOf="@id/title_task"
-                    app:layout_constraintLeft_toRightOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+            android:id="@+id/description_task"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Lunch with Julia, fight this quarantine with humor dsdsqdqs"
+            android:textColor="#A6A3AF"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/sf_pro_regular"
+            app:layout_constraintTop_toBottomOf="@id/linear_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/linear_container" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

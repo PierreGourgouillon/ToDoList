@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,8 +22,8 @@ public class ToDoCreate extends Fragment {
 
     View view;
     ImageView backButton;
-    TextInputLayout titleInput;
-    TextInputLayout descriptionInput;
+    EditText titleInput;
+    EditText descriptionInput;
     Button createTask;
 
     @Override
@@ -77,7 +78,7 @@ public class ToDoCreate extends Fragment {
     }
 
     private ToDo createNewToDo(){
-        return new ToDo(titleInput.getEditText().getText().toString(), descriptionInput.getEditText().getText().toString(), "15:5");
+        return new ToDo(titleInput.getText().toString(), descriptionInput.getText().toString(), "15:5 AM");
     }
 
     private void redirectToDoFragment(ToDo newTask){

@@ -1,5 +1,6 @@
 package com.example.app_todolist.Domain;
 
+//Objectif : Stock les données
 
 public class ViewModel {
     private ToDo toDo;

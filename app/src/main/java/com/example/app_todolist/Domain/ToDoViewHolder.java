@@ -5,6 +5,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.app_todolist.R;
 
+//Objectif : Afficher la vue avec les données
+
 public class ToDoViewHolder extends RecyclerView.ViewHolder {
     private final TextView titleTask;
     private final TextView descriptionTask;

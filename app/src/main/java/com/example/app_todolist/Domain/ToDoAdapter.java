@@ -9,6 +9,8 @@ import com.example.app_todolist.R;
 
 import java.util.List;
 
+//Objectif : Liaison entre le viewHolder et le viewModel
+
 public class ToDoAdapter extends RecyclerView.Adapter {
     List<ViewModel> models;
 

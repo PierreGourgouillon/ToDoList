@@ -2,7 +2,6 @@ package com.example.app_todolist.Screens;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -14,6 +13,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app_todolist.Database.Handler;
@@ -27,9 +27,11 @@ public class ToDoCreate extends Fragment {
     EditText titleInput;
     EditText descriptionInput;
     Button createTask;
-    Button buttonCalendar;
+    LinearLayout buttonCalendar;
     LinearLayout containerCalendar;
     CalendarView calendar;
+    String date;
+    TextView textButtonCalendar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,7 @@ public class ToDoCreate extends Fragment {
         returnToLastFragment();
         setButtonNewTask();
         setButtonCalendar();
+        readDataCalendar();
 
         return view;
     }
@@ -57,6 +60,15 @@ public class ToDoCreate extends Fragment {
         this.calendar = view.findViewById(R.id.calendar);
         this.containerCalendar = view.findViewById(R.id.container_calendar);
         this.buttonCalendar = view.findViewById(R.id.button_calendar);
+        this.textButtonCalendar = view.findViewById(R.id.text_button_calendar);
+    }
+
+    private void readDataCalendar(){
+        this.calendar.setOnDateChangeListener((calendarView, i, i1, i2) -> {
+            this.date = i2 + "/" + (i1 + 1) + "/" + i;
+            this.textButtonCalendar.setText(date);
+            this.containerCalendar.setVisibility(View.GONE);
+        });
     }
 
     private void setButtonCalendar(){

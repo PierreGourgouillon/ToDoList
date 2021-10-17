@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.app_todolist.Database.Handler;
@@ -31,7 +32,13 @@ public class ToDoCreate extends Fragment {
     LinearLayout containerCalendar;
     CalendarView calendar;
     String date;
+    String hour;
     TextView textButtonCalendar;
+
+    TextView textButtonClock;
+    LinearLayout buttonClock;
+    LinearLayout containerClock;
+    TimePicker clockPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,9 @@ public class ToDoCreate extends Fragment {
         returnToLastFragment();
         setButtonNewTask();
         setButtonCalendar();
+        setButtonClock();
         readDataCalendar();
+        readDataClock();
 
         return view;
     }
@@ -61,6 +70,11 @@ public class ToDoCreate extends Fragment {
         this.containerCalendar = view.findViewById(R.id.container_calendar);
         this.buttonCalendar = view.findViewById(R.id.button_calendar);
         this.textButtonCalendar = view.findViewById(R.id.text_button_calendar);
+
+        this.textButtonClock = view.findViewById(R.id.text_button_clock);
+        this.buttonClock = view.findViewById(R.id.button_clock);
+        this.containerClock = view.findViewById(R.id.container_clock);
+        this.clockPicker = view.findViewById(R.id.clock_picker);
     }
 
     private void readDataCalendar(){
@@ -68,6 +82,22 @@ public class ToDoCreate extends Fragment {
             this.date = i2 + "/" + (i1 + 1) + "/" + i;
             this.textButtonCalendar.setText(date);
             this.containerCalendar.setVisibility(View.GONE);
+        });
+    }
+
+    private void readDataClock(){
+        this.clockPicker.setOnTimeChangedListener((view, hourOfDay, minute) -> {
+            this.hour = hourOfDay + ":" + minute;
+            this.textButtonClock.setText(this.hour);
+            this.containerClock.setVisibility(View.GONE);
+        });
+
+    }
+
+    private void setButtonClock(){
+        this.buttonClock.setOnClickListener(view -> {
+            View viewFragment = view.getRootView();
+            viewFragment.findViewById(R.id.container_clock).setVisibility(View.VISIBLE);
         });
     }
 
@@ -98,7 +128,7 @@ public class ToDoCreate extends Fragment {
     }
 
     private ToDo createNewToDo(){
-        return new ToDo(titleInput.getText().toString(), descriptionInput.getText().toString(), "15:5 AM");
+        return new ToDo(titleInput.getText().toString(), descriptionInput.getText().toString(), this.hour, this.date);
     }
 
     private void redirectToMainFragment(ToDo newTask){

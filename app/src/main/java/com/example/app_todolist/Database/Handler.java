@@ -26,6 +26,8 @@ public class Handler extends SQLiteOpenHelper {
 
     private static final String HOURS_COL = "hours";
 
+    private static final String DATE_COL = "date";
+
     private static final String ISCOMPLETE_COL = "iscomplete";
 
     public Handler(Context context){
@@ -39,6 +41,7 @@ public class Handler extends SQLiteOpenHelper {
                 + TITLE_COL + " TEXT,"
                 + DESCRIPTION_COL + " TEXT,"
                 + HOURS_COL + " TEXT,"
+                + DATE_COL + " TEXT,"
                 + ISCOMPLETE_COL + " INTEGER)";
         db.execSQL(query);
     }
@@ -50,6 +53,7 @@ public class Handler extends SQLiteOpenHelper {
         values.put(TITLE_COL, todo.getTitle().toString());
         values.put(DESCRIPTION_COL, todo.getDescription().toString());
         values.put(HOURS_COL, todo.getHours().toString());
+        values.put(DATE_COL, todo.getDate());
         values.put(ISCOMPLETE_COL, 0);
 
         db.insert(TABlE_NAME,null, values);
@@ -64,7 +68,7 @@ public class Handler extends SQLiteOpenHelper {
 
         if (cursorToDos.moveToFirst()) {
             do {
-                courseModalArrayList.add(new ToDo(cursorToDos.getString(1),cursorToDos.getString(2),cursorToDos.getString(3)));
+                courseModalArrayList.add(new ToDo(cursorToDos.getString(1),cursorToDos.getString(2),cursorToDos.getString(3), cursorToDos.getString(4)));
             } while (cursorToDos.moveToNext());
         }
 

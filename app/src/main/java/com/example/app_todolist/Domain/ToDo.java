@@ -6,13 +6,15 @@ public class ToDo {
     private String title;
     private String description;
     private String hours;
+    private String date;
     private boolean isComplete;
 
-    public ToDo(String title, String description, String hours){
+    public ToDo(String title, String description, String hours, String date){
         verifyData(title,description, hours);
         this.title = title;
         this.description = description;
         this.hours = hours;
+        this.date = date;
         this.isComplete = false;
     }
 
@@ -59,5 +61,13 @@ public class ToDo {
                 ", hours='" + hours + '\'' +
                 ", isComplete=" + isComplete +
                 '}';
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

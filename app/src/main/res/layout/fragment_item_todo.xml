@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,6 +9,15 @@
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:background="@drawable/background_item">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:background="@drawable/background_item">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
             android:id="@+id/linear_container"
@@ -36,17 +46,6 @@
                 android:layout_toEndOf="@id/icon"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="20dp" />
-
-        <TextView
-                android:id="@+id/hour_task"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="7:00 AM"
-                android:layout_alignParentEnd="true"
-                android:textColor="@color/white"
-                android:fontFamily="@font/sf_pro_regular"
-                android:layout_centerVertical="true"/>
-
     </RelativeLayout>
 
     <TextView

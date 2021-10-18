@@ -13,9 +13,11 @@ import java.util.List;
 
 public class ToDoAdapter extends RecyclerView.Adapter {
     List<ViewModel> models;
+    ClickCallback callback;
 
-    public ToDoAdapter(List<ViewModel> viewModels){
+    public ToDoAdapter(List<ViewModel> viewModels, ClickCallback clickCallback){
         this.models = viewModels;
+        this.callback = clickCallback;
     }
 
     @NonNull
@@ -23,12 +25,13 @@ public class ToDoAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent,final int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
 
-        return new ToDoViewHolder(view);
+        return new ToDoViewHolder(view, callback);
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         ((ToDoViewHolder) holder).bindData(models.get(position));
+        System.out.println(position);
     }
 
     @Override
@@ -40,4 +43,6 @@ public class ToDoAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
         return R.layout.fragment_item_todo;
     }
+
 }
+

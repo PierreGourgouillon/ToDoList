@@ -28,17 +28,6 @@ public class ToDoCreate extends Fragment {
     EditText titleInput;
     EditText descriptionInput;
     Button createTask;
-    LinearLayout buttonCalendar;
-    LinearLayout containerCalendar;
-    CalendarView calendar;
-    String date;
-    String hour;
-    TextView textButtonCalendar;
-
-    TextView textButtonClock;
-    LinearLayout buttonClock;
-    LinearLayout containerClock;
-    TimePicker clockPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,10 +42,6 @@ public class ToDoCreate extends Fragment {
         initialiseComponents(view);
         returnToLastFragment();
         setButtonNewTask();
-        setButtonCalendar();
-        setButtonClock();
-        readDataCalendar();
-        readDataClock();
 
         return view;
     }
@@ -66,46 +51,6 @@ public class ToDoCreate extends Fragment {
         this.createTask = view.findViewById(R.id.create_task);
         this.titleInput = view.findViewById(R.id.title_new_task);
         this.descriptionInput = view.findViewById(R.id.description_new_task);
-        this.calendar = view.findViewById(R.id.calendar);
-        this.containerCalendar = view.findViewById(R.id.container_calendar);
-        this.buttonCalendar = view.findViewById(R.id.button_calendar);
-        this.textButtonCalendar = view.findViewById(R.id.text_button_calendar);
-
-        this.textButtonClock = view.findViewById(R.id.text_button_clock);
-        this.buttonClock = view.findViewById(R.id.button_clock);
-        this.containerClock = view.findViewById(R.id.container_clock);
-        this.clockPicker = view.findViewById(R.id.clock_picker);
-    }
-
-    private void readDataCalendar(){
-        this.calendar.setOnDateChangeListener((calendarView, i, i1, i2) -> {
-            this.date = i2 + "/" + (i1 + 1) + "/" + i;
-            this.textButtonCalendar.setText(date);
-            this.containerCalendar.setVisibility(View.GONE);
-        });
-    }
-
-    private void readDataClock(){
-        this.clockPicker.setOnTimeChangedListener((view, hourOfDay, minute) -> {
-            this.hour = hourOfDay + ":" + minute;
-            this.textButtonClock.setText(this.hour);
-            this.containerClock.setVisibility(View.GONE);
-        });
-
-    }
-
-    private void setButtonClock(){
-        this.buttonClock.setOnClickListener(view -> {
-            View viewFragment = view.getRootView();
-            viewFragment.findViewById(R.id.container_clock).setVisibility(View.VISIBLE);
-        });
-    }
-
-    private void setButtonCalendar(){
-        this.buttonCalendar.setOnClickListener(view -> {
-            View viewFragment = view.getRootView();
-            viewFragment.findViewById(R.id.container_calendar).setVisibility(View.VISIBLE);
-        });
     }
 
     private void returnToLastFragment(){
@@ -128,7 +73,7 @@ public class ToDoCreate extends Fragment {
     }
 
     private ToDo createNewToDo(){
-        return new ToDo(titleInput.getText().toString(), descriptionInput.getText().toString(), this.hour, this.date);
+        return new ToDo(titleInput.getText().toString(), descriptionInput.getText().toString());
     }
 
     private void redirectToMainFragment(ToDo newTask){

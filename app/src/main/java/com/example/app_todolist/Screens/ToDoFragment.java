@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.app_todolist.Database.Handler;
+import com.example.app_todolist.Domain.ClickCallback;
 import com.example.app_todolist.Domain.ToDo;
 import com.example.app_todolist.R;
 import com.example.app_todolist.Domain.ToDoAdapter;
@@ -71,7 +72,12 @@ public class ToDoFragment extends Fragment {
     }
 
     private void createRecyclerView(){
-        this.adapter = new ToDoAdapter(listToPrint);
+        this.adapter = new ToDoAdapter(listToPrint, new ClickCallback() {
+            @Override
+            public void onItemClick(int position) {
+                ViewModel viewModel = listToPrint.get(position);
+            }
+        });
     }
 
     public void navToNewFragment(ImageButton button, int id){
